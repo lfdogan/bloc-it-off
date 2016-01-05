@@ -1,0 +1,13 @@
+.tasks {
+    vertical-align: middle;
+    background-color: lightgray;
+    position: fixed; /* or absolute */
+    width: 300px;
+    min-height: 500px;
+    left: 50%; /* top left corner will be in middle of page*/
+    margin-left: -100px; /* half the width moved left */
+}
+.title {
+    text-align: center;
+    background-color: darkseagreen;    
+}
