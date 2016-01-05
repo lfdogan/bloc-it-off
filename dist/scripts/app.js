@@ -21,7 +21,7 @@
 //             })
          });
      }
-//define a module with angular.module: The first argument passed is the prescribed name of the module. The array, passed as the second argument, injects dependencies into an application.
+//define a module with angular.module: The first argument passed is the prescribed name of the module. The array, passed as the second argument, injects dependencies into an application. with 'firebase' dependency the $firebaseObject, $firebaseArray, and $firebaseAuth services are available to be injected into any controller, service, or factory.
      angular
          .module('blocItOff', ['ui.router', 'firebase'])
          .config(config);
