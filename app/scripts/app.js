@@ -9,19 +9,21 @@
          });
          $stateProvider
          //in LandingCtrl.js refer to variables as this.landing but in landing.html as landing.title
-             .state('home', {
+             .state('main', {
                  url: '/',
-//                 controller: 'HomeCtrl as home',
-                 templateUrl: '/templates/home.html'
-//             })
-//             .state('album', {
-//                 url: '/album',
-//                 controller: 'AlbumCtrl as album',
-//                 templateUrl: '/templates/album.html'
-//             })
+                 controller: 'MainCtrl as main',
+                 templateUrl: '/templates/main.html'
+             })
+             .state('current', {
+                 url: '/current',
+                 controller: 'MainCtrl as main',
+                 templateUrl: '/templates/current.html'
          });
      }
+
+
 //define a module with angular.module: The first argument passed is the prescribed name of the module. The array, passed as the second argument, injects dependencies into an application. with 'firebase' dependency the $firebaseObject, $firebaseArray, and $firebaseAuth services are available to be injected into any controller, service, or factory.
+     //$firebaseArray() can be used to sync a Firebase database with an Angular model like an array of tasks. 
      angular
          .module('blocItOff', ['ui.router', 'firebase'])
          .config(config);
