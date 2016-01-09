@@ -89,6 +89,9 @@
          var allMessagesRef = rootRef.child('allMessages'); //location of database holding all messages
          var simpleMessagesRef = rootRef.child('simpleMessages');
 
+
+
+         
          
          this.allMessages = $firebaseArray(allMessagesRef); 
       
@@ -131,9 +134,7 @@
                   };
                 };
         
-             
-         
-         
+
          
          
          //when user clicks on update button... save to firebase:
@@ -144,11 +145,20 @@
          // updateUI(): Update the UI by showing newly added message
       btnUpdateMessage.addEventListener('click', function(){
           console.log("UPDATE");
+          //check for value of radio button and assign to variable txtPriority
+             if (document.getElementById('prLow').checked) {
+                 var txtPriority = document.getElementById('prLow').value;
+             } else if (document.getElementById('prHigh').checked) {
+                 var txtPriority = document.getElementById('prHigh').value;
+             } else {
+                 var txtPriority = document.getElementById('prMed').value;
+             };
           currentMessageRef.set(txtNewMessage.value);
           simpleMessagesRef.push(txtNewMessage.value);
           newPostRef = allMessagesRef.push();
           newPostRef.set({
               value: txtNewMessage.value, //the task entered by user
+              priority: txtPriority, // user entered priority for task
               completed: false, //false for not completed
               dateAdded: Firebase.ServerValue.TIMESTAMP // record the time when task was entered
           });

@@ -14,6 +14,7 @@
             <table>
                 <tr>
                     <th>task</th>
+                    <th>priority</th>
                     <th>date added</th>
                     <th>date due</th>
                     <th>completed?</th>
@@ -22,6 +23,7 @@
                 </tr>
                 <tr ng-repeat="message in main.allMessages" ng-show="message.completed"  >
                     <td> {{ message.$value }} {{ message.value }} </td>
+                    <td> {{ message.priority }} </td>
                     <td> {{ message.dateAdded | date: 'MMM d HH:mm:ss' }} </td>
                     <td> {{ main.calcDueDate(message.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>
                     <td> {{ message.completed }} </td>
@@ -37,8 +39,10 @@
         <div>
             <input type="text" 
                    id="txtNewMessage" 
-                   class="form-control" 
-                   placeholder="new message">
+                   placeholder="new task">
+                <input type="radio" name="txtPriority" value="high">high
+                <input type="radio" name="txtPriority" value="medium" checked>medium
+                <input type="radio" name="txtPriority" value="low">low
             <button id="btnUpdateMessage" class="btn btn-primary">Update</button>
             <button id="btnUndo" class="btn btn-primary">Undo <span id="lblCurrentMessage" class="center"></span></button>
         </div>
