@@ -92,8 +92,7 @@
          
          this.allMessages = $firebaseArray(allMessagesRef); 
       
-         
-         
+
          
           //function calcDueDate receives a date in total number of milliseconds
          this.calcDueDate = function(dateEntered){
@@ -101,8 +100,9 @@
              //var dueDate1s = dateEntered + 6000 //dueDate in 1 second
              //var dueDate9s = dateEntered + 6000*9) //dueDate in 9 seconds
              //var dueDate = dateEntered + 60000 //dueDate in 1 minute
-             var dueDate = dateEntered + (60000*10) //dueDate in 10 minutes
+             //var dueDate = dateEntered + (60000*10) //dueDate in 10 minutes
              //var dueDate = dateEntered + 3.6e+6 //dueDate in 1 hour
+             var dueDate = dateEntered + ((3.6e+6)*20) //dueDate in 20 hours
              //var dueDate = dateEntered + 8.64e+7 //dueDate in 1 day
              //var dueDate = dateEntered + 6.048e+8 //dueDate in 1 week
              return dueDate;
@@ -120,6 +120,18 @@
                  return true; //overdue, inactive
          };
          
+
+                  
+         //changes text to show strike-through for all overdue and completed tasks
+              this.getTextDeco = function(date, compl) {
+                  if ( this.calcOverdue(this.calcDueDate(date)) || compl) {
+                      return 'line-through'  // if overdue OR completed
+                  } else {
+                      return 'none'  // if not overdue and not completed
+                  };
+                };
+        
+             
          
          
          
@@ -203,6 +215,7 @@
          };      
 
          
+
 
          
 /*********************************************************************************************************************/         

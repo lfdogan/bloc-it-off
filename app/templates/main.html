@@ -45,7 +45,8 @@
                     <th>overdue?</th>                    
                     <th>click to complete</th>
                 </tr>
-                <tr ng-repeat="message in main.allMessages">
+                <tr ng-repeat="message in main.allMessages" 
+                    ng-style="{'text-decoration': main.getTextDeco(message.dateAdded, message.completed) }">
                     <td> {{ message.$value }} {{ message.value }} </td>
                     <td> {{ message.dateAdded | date: 'MMM d HH:mm:ss' }} </td>
                     <td> {{ main.calcDueDate(message.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>

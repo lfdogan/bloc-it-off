@@ -14,10 +14,10 @@
                  controller: 'MainCtrl as main',
                  templateUrl: '/templates/main.html'
              })
-             .state('current', {
-                 url: '/current',
+             .state('active', {
+                 url: '/active',
                  controller: 'MainCtrl as main',
-                 templateUrl: '/templates/current.html'
+                 templateUrl: '/templates/active.html'
              })
              .state('completed', {
                  url: '/completed',
