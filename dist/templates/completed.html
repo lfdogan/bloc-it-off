@@ -1,5 +1,5 @@
 
-    <div class="title"><h3>Active Tasks</h3></div>
+    <div class="title"><h3>Completed Tasks</h3></div>
 
 
     
@@ -20,7 +20,7 @@
                     <th>overdue?</th>                    
                     <th>click to complete</th>
                 </tr>
-                <tr ng-repeat="message in main.allMessages" ng-show="!main.calcOverdue(main.calcDueDate(message.dateAdded))"  >
+                <tr ng-repeat="message in main.allMessages" ng-show="message.completed"  >
                     <td> {{ message.$value }} {{ message.value }} </td>
                     <td> {{ message.dateAdded | date: 'MMM d HH:mm:ss' }} </td>
                     <td> {{ main.calcDueDate(message.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>

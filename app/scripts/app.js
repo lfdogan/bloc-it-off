@@ -18,6 +18,11 @@
                  url: '/current',
                  controller: 'MainCtrl as main',
                  templateUrl: '/templates/current.html'
+             })
+             .state('completed', {
+                 url: '/completed',
+                 controller: 'MainCtrl as main',
+                 templateUrl: '/templates/completed.html'
          });
      }
 
