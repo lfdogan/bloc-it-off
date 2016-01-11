@@ -1,6 +1,4 @@
-
-
-    <div class="title"><h3>{{ main.heroTitle }}</h3></div>
+<div class="title"><h3>{{ main.heroTitle }}</h3></div>
 
 
     
@@ -46,10 +44,11 @@
                     <th>overdue?</th>                    
                     <th>click to complete</th>
                 </tr>
-                <tr ng-repeat="message in main.allMessages" 
+                <tr ng-repeat="message in main.allMessages | orderBy: message.priority" 
                     ng-style="{'text-decoration': main.getTextDeco(message.dateAdded, message.completed) }">
                     <td> {{ message.$value }} {{ message.value }} </td>
-                    <td> {{ message.priority }} </td>
+<!--                    <td> {{ message.priority }} </td>-->
+                    <td> {{ main.labelPriority(message.priority) }} </td>
                     <td> {{ message.dateAdded | date: 'MMM d HH:mm:ss' }} </td>
                     <td> {{ main.calcDueDate(message.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>
                     <td> {{ message.completed }} </td>
@@ -67,9 +66,9 @@
                    id="txtNewMessage" 
                    placeholder="new task">
             <div id="txtPriority">
-                <input type="radio" id="prHigh" name="Priority" value="high">high
-                <input type="radio" id="prMed"  name="Priority" value="medium" checked>medium
-                <input type="radio" id="prLow"  name="Priority" value="low">low
+                <input type="radio" id="prHigh" name="Priority" value=1>high
+                <input type="radio" id="prMed"  name="Priority" value=2 checked>medium
+                <input type="radio" id="prLow"  name="Priority" value=3>low
             </div>
             <button id="btnUpdateMessage" class="btn btn-primary">Update</button>
             <button id="btnUndo" class="btn btn-primary">Undo <span id="lblCurrentMessage" class="center"></span></button>
@@ -77,4 +76,3 @@
     </div>
     
 </div>
-

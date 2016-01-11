@@ -1,7 +1,7 @@
  (function() {
      function MainCtrl($firebaseArray) { //services injected
          this.heroTitle = "All Tasks!!!";
-         var rootRef = new Firebase("https://lfdoganblocitoff.firebaseio.com/");          
+         var rootRef = new Firebase("https://lfdoganblocitoff.firebaseio.com/");    // Root Firebase reference      
          
  
 /*********************************************************************************************************************/
@@ -76,8 +76,7 @@
                    /* bottom part of box */
          
          
-
-         var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on undo button shows latest message
+var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on undo button shows latest message
          var txtNewMessage = document.getElementById('txtNewMessage'); //input text for new message
          var btnUpdateMessage = document.getElementById('btnUpdateMessage'); //update button for new messae
          var btnUndo = document.getElementById('btnUndo'); //undo button to remove latest message
@@ -101,12 +100,10 @@
          this.calcDueDate = function(dateEntered){
              // 1,000 ms in a second; 60s in a minute
              //var dueDate1s = dateEntered + 6000 //dueDate in 1 second
-             //var dueDate9s = dateEntered + 6000*9) //dueDate in 9 seconds
              //var dueDate = dateEntered + 60000 //dueDate in 1 minute
-             //var dueDate = dateEntered + (60000*10) //dueDate in 10 minutes
              //var dueDate = dateEntered + 3.6e+6 //dueDate in 1 hour
-             var dueDate = dateEntered + ((3.6e+6)*20) //dueDate in 20 hours
              //var dueDate = dateEntered + 8.64e+7 //dueDate in 1 day
+             var dueDate = dateEntered + ((8.64e+7)*3) //dueDate in 3 days
              //var dueDate = dateEntered + 6.048e+8 //dueDate in 1 week
              return dueDate;
          };
@@ -225,8 +222,39 @@
          };      
 
          
+         
+         
+         /*
+         function: labelPriority()
+         used in html to transform priority value from a number to text
+         1: high, 2: medium, 3: low
+         takes in the value of allMessages/key/priority
+         converts the value to a number
+         returns corresponding string
+         */
+this.labelPriority = function(number){
+    //console.log("labelPriority");
+    number = Number(number); //force string to number
+    switch(number){
+        case 1:
+            return 'high';
+            break;
+        case 2: 
+            return 'medium';
+            break;
+        case 3: 
+            return 'low';
+            break;
+        default: 
+            return 'other';
+    };
+};
 
-
+         
+         /*
+         function: 
+         */
+         
          
 /*********************************************************************************************************************/         
      }
@@ -235,4 +263,3 @@
          .module('blocItOff')
          .controller('MainCtrl', MainCtrl); //array of dependencies contains services and lastly callback function. Inject $firebaseObject and other services into this controller
  })();
-
