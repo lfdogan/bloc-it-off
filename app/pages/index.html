@@ -11,10 +11,18 @@
     <div class="box">
         <a ui-sref="active">Active Tasks</a>
         <a ui-sref="completed">Completed Tasks</a>
-        <a ui-sref="main">All Tasks</a>
+        <a ui-sref="all">All Tasks</a>
    <ui-view></ui-view> 
-    
-    
+        
+        
+
+
+
+
+
+        
+    </div>
+
     
     
     
@@ -35,20 +43,20 @@
 <script src="/scripts/app.js"></script>
 
 <!--JS Services -->
-<!--
-<script src="/scripts/services/Fixtures.js"></script>
-<script src="/scripts/services/SongPlayer.js"></script>
--->
+<script src="/scripts/services/Message.js"></script>
+
 
 <!--JS Controllers -->
-<script src="/scripts/controllers/MainCtrl.js"></script>
+<script src="/scripts/controllers/AllCtrl.js"></script>
+<script src="/scripts/controllers/ActiveCtrl.js"></script>
+<script src="/scripts/controllers/CompletedCtrl.js"></script>        
 
 
 <!--JS Directive Templates-->
 <!--<script src="/scripts/directives/seekBar.js"></script>-->
     
 <!--JS Filters-->
-<!--<script src="/scripts/filters/timecode.js"></script>-->
+<script src="/scripts/filters/priority.js"></script>
 
 </body>
 </html>

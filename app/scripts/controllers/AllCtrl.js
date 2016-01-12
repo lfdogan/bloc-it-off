@@ -1,98 +1,28 @@
  (function() {
-     function MainCtrl($firebaseArray) { //services injected
-         this.heroTitle = "All Tasks!!!";
-         var rootRef = new Firebase("https://lfdoganblocitoff.firebaseio.com/");    // Root Firebase reference      
-         
- 
-/*********************************************************************************************************************/
-          /* top part of box */
-    /*     
-         
-//
-//         // download the data into a local array. 
-//         //this.tasks (alternately: $scope.tasks) is going to be populated from the remote server. 
-//         var tasksRef = rootRef.child('tasks');
-//         this.tasks = $firebaseArray(tasksRef);
-//         
-//         
-//         //<button ng-click="main.addTask(main.task)">Add New</button>
-//         this.addTask = function(task) {
-//             console.log(task);
-//             this.tasks.$add(task).then(function(tasksRef) {
-//                 console.log(tasksRef.key());
-//             });
-//         }
+     function AllCtrl($firebaseArray, Message) { //services injected
 
-                  
-         
-       
-         
-         
-         var listRef = rootRef.child('list');
-
-         //instructions: Set the $scope array holding your tasks to a Firebase object that calls $firebaseArray()
-         this.list = $firebaseArray(listRef); 
-         var scope = this;
-         var newItemAdded;
-         this.addListItem = function(item) {
-             // utilize the $add(), $remove(), and $save() methods provided by the service to change the structure of the array
-             // To get the id of an item in a $firebaseArray within ng-repeat, call $id on that item.
-             // add an item: list.$add( {key: "value" }).then(...);
-             // make list available in DOM: $scope.list = list;
-             newItemAdded = listRef.push(item.value);
-             this.list.$add(item).then(function(listRef) {
-                 //console.log('this is the item', item);
-                 scope.newList = {};// clears saved item from the input box
-             });
-         };
-
-         undoListItem = document.getElementById('undoListItem'), //undo button
-         undoListItem.addEventListener('click', function(){
-             console.log("newItemAdded");
-             console.log(newItemAdded);
-             newItemAdded.remove();
-             console.log("key");
-             console.log(newItemAdded.key());
-//             var lastChildID = this.list.child(newItemAdded.key());
-//             console.log("lastChildID");
-//             console.log(lastChildID);
-//             lastChildID.remove();//remove() is equivalent to calling set(null).
-         });            
-                      
-//         this.removeListItem = function(item){
-//             // var rec = list.$getRecord("foo"); // record with $id === "foo" or null
-//             var removeResult = this.list.$getRecord("nom");
-//             if (removeResult) {console.log("found");} else {console.log("key not found");};
-//             this.list.$indexFor("alpha");
-//             console.log('fail to remove the item', item);
-//             this.list.$remove(item).then(function(listRef){ // remove an item: list.$remove(2).then(...);
-//                 console.log('success on remove the item', item);
-//             });
-//         };
-//      
-      
-     */    
-/*********************************************************************************************************************/
-                   /* bottom part of box */
-         
-         
-var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on undo button shows latest message
-         var txtNewMessage = document.getElementById('txtNewMessage'); //input text for new message
-         var btnUpdateMessage = document.getElementById('btnUpdateMessage'); //update button for new messae
-         var btnUndo = document.getElementById('btnUndo'); //undo button to remove latest message
-         
-
-         
+         var rootRef = new Firebase("https://lfdoganblocitoff.firebaseio.com/");    // Root Firebase reference  
+         // Child firebase database references
          var currentMessageRef = rootRef.child('currentMessage'); //location of database holding latest message
          var allMessagesRef = rootRef.child('allMessages'); //location of database holding all messages
-         var simpleMessagesRef = rootRef.child('simpleMessages');
-
-
+         //var simpleMessagesRef = rootRef.child('simpleMessages'); // location for a list of messages
 
          
          
-         this.allMessages = $firebaseArray(allMessagesRef); 
-      
+         
+         var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on undo button shows latest message
+         var txtNewMessage = document.getElementById('txtNewMessage'); //input text for new message
+         var btnUpdateMessage = document.getElementById('btnUpdateMessage'); //update button for new messae
+         var btnUndo = document.getElementById('btnUndo'); //undo button to remove latest message         
+         
+         
+//variables accessed by the html page as all.<variable> where it is defined here as this.<variable>
+         this.title = "All Tasks"; 
+         // the ARRAY of objects from the allMessages Firebase database
+         this.allMessages = Message.all();
+
+         this.Message = Message;
+
 
          
          
@@ -112,7 +42,11 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
 
          
          
+         
+         
+//COPIED TO MESSAGE.JS
           //function calcDueDate receives a date in total number of milliseconds
+         //this.calcDueDate called in html as all.calcDueDate
          this.calcDueDate = function(dateEntered){
              // 1,000 ms in a second; 60s in a minute
              //var dueDate1s = dateEntered + 6000 //dueDate in 1 second
@@ -123,15 +57,16 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
              //var dueDate = dateEntered + 6.048e+8 //dueDate in 1 week
              return dueDate;
          };
+
          
          
          
-         
-         
+//COPIED TO MESSAGE.JS     
          // function calcOverdue() takes in a date/time (a number in the form of milliseconds)
          // calculates the difference between the dueDate and current date/time
          //can't use Firebase.ServerValue.TIMESTAMP here because it only works when writing to Firebase via .set(), .push() etc
          // if the difference is positive the task is still current, if negative it has passed the deadline to be completed
+         //this.calcOverdue called in html as all.calcOverdue
          this.calcOverdue = function(dueDate){
              var difference = dueDate - new Date().getTime();
              if (difference > 0)
@@ -143,7 +78,7 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
 
                   
 
-         
+
          
          //when user clicks on update button... save to firebase:
          //.set() replaces previous value of 'currentMessage' child with new value from input box
@@ -154,7 +89,7 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
          var postID;
          var newPostRef;
          btnUpdateMessage.addEventListener('click', function(){
-          console.log("UPDATE");
+             console.log("UPDATE");
           //check for value of radio button and assign to variable txtPriority
              if (document.getElementById('prLow').checked) {
                  var txtPriority = document.getElementById('prLow').value;
@@ -163,10 +98,10 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
              } else {
                  var txtPriority = document.getElementById('prMed').value;
              };
-          currentMessageRef.set(txtNewMessage.value);
-          simpleMessagesRef.push(txtNewMessage.value);
-          newPostRef = allMessagesRef.push();
-          newPostRef.set({
+             currentMessageRef.set(txtNewMessage.value);
+             //simpleMessagesRef.push(txtNewMessage.value);
+             newPostRef = allMessagesRef.push();
+             newPostRef.set({
               value: txtNewMessage.value, //the task entered by user
               priority: txtPriority, // user entered priority for task
               completed: false, //false for not completed
@@ -182,7 +117,7 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
          
          
          
-         
+
          
          //when user clicks on the undo button... remove latest database entry
          // key() gets the unique ID from the most recent entry and adds it to the url of all messages database location
@@ -197,25 +132,9 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
              currentMessageRef.set(''); 
              updateUI();
          });
-         
-         
-         
-         
-         
-         /*
-         * function checkOff() STILL NEEDS TO BE WORKED OUT!!!
-         */
-         // when click on the ID table cell of the message object
-        this.checkOff = function(message) {
-            console.log("CHECK OFF");
-            console.log(message); // ex: Object {$value: "kayak", $id: "-K..., $priority: null, $$hashKey: "object:7"}
-            console.log(message.$id); //not the child key! $id saved within the value object
-            console.log(parent.message); //undefined
-            var currentItem = allMessagesRef.child("-K7YPLlrLnEubM-TY-TF"); //-K7YPLlrLnEubM-TY-TF: swimming            
-            console.log(currentItem);
-            currentItem.update({     "completed": "true"      }); //removes the value swimming
-         };
 
+         
+         
          
          
          
@@ -240,7 +159,9 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
          * accepts the value 'dateAdded' (number of milliseconds) and the value 'completed'
          * run calcDueDate() for the dateAdded then run calcOverdue() on the result to determine if task is overdue
          * if overdue=true or completed=true then change text-decoration to line-through (strike-through) otherwise no text decoration
+         * used only for ALL. won't occur in ACTIVE and all of the COMPLETED will be strike-through so I can set that static
          */
+         //this.getTextDeco called in html as all.getTextDeco
          this.getTextDeco = function(date, compl) {
              if ( this.calcOverdue(this.calcDueDate(date)) || compl) {
                  return 'line-through'  // if overdue OR completed
@@ -251,52 +172,25 @@ var lblCurrentMessage = document.getElementById('lblCurrentMessage'); //label on
         
 
          
-         
-         
-         /*
-         function: labelPriority()
-         used in html to transform priority value from a number to text
-         1: high, 2: medium, 3: low
-         takes in the value of allMessages/key/priority
-         converts the value to a number
-         returns corresponding string
-         */
-this.labelPriority = function(number){
-    //console.log("labelPriority");
-    number = Number(number); //force string to number
-    switch(number){
-        case 1:
-            return 'high';
-            break;
-        case 2: 
-            return 'medium';
-            break;
-        case 3: 
-            return 'low';
-            break;
-        default: 
-            return 'other';
-    };
-};
+
 
          
          
-         
-         
-         
-         /*
-         function: 
-         */
-         this.labelCompleted = function(text){
-             if (text) return '<span class="ion-checkmark"></span>';
-             else return '';
-         };
-         
+
          
 /*********************************************************************************************************************/         
      }
  
      angular
          .module('blocItOff')
-         .controller('MainCtrl', MainCtrl); //array of dependencies contains services and lastly callback function. Inject $firebaseObject and other services into this controller
+         .controller('AllCtrl', AllCtrl); //array of dependencies contains services and lastly callback function. Inject $firebaseObject and other services into this controller
  })();
+
+
+
+/* 1/12/16 when moving functions out of AllCtrl.js into Message.js you must have:
+function ActiveCtrl(Message)
+this.Message = Message;
+.controller('ActiveCtrl', ['Message', ActiveCtrl]);
+along with the correct path in the html ( {{ active.Message.labelPriority(message.priority) }} )
+*/

@@ -1,4 +1,5 @@
 //The root Angular module will act as a container for different parts of our application.
+//App.js contains code for setting up routes, app.factory functions and app.run to setup $rootScope
 
  (function() {
      function config($stateProvider, $locationProvider) {
@@ -9,19 +10,19 @@
          });
          $stateProvider
          //in LandingCtrl.js refer to variables as this.landing but in landing.html as landing.title
-             .state('main', {
+             .state('all', {
                  url: '/',
-                 controller: 'MainCtrl as main',
-                 templateUrl: '/templates/main.html'
+                 controller: 'AllCtrl as all',
+                 templateUrl: '/templates/all.html'
              })
              .state('active', {
                  url: '/active',
-                 controller: 'MainCtrl as main',
+                 controller: 'ActiveCtrl as active',
                  templateUrl: '/templates/active.html'
              })
              .state('completed', {
                  url: '/completed',
-                 controller: 'MainCtrl as main',
+                 controller: 'CompletedCtrl as completed',
                  templateUrl: '/templates/completed.html'
          });
      }

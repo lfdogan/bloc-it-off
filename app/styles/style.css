@@ -1,6 +1,6 @@
 .box {
     vertical-align: middle;
-    background-color: lightgray;
+    background-color: #bdbdbd;
     position: fixed; /* or absolute */
     left: 50%; /* top left corner will be in middle of page*/
     min-height: 500px;
@@ -9,12 +9,22 @@
 }
 .title {
     text-align: center;
-    background-color: darkseagreen;    
+    background-color: darkseagreen; 
+}
+
+table {
+    background-color: #d3d3d3;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #a8a8a8;
 }
 
 
 .tableCheckbox {
-    background-color: white;
-    text-align: right;    
+    background-color: white; 
 }
 .center {text-align: center;}
+.right {text-align: right};
