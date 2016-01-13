@@ -3,7 +3,6 @@
     background-color: #bdbdbd;
     position: fixed; /* or absolute */
     left: 50%; /* top left corner will be in middle of page*/
-    min-height: 500px;
     width: 600px;
     margin-left: -300px; /* half the width, minus means moved to left */
 }
@@ -23,8 +22,5 @@ th {
 }
 
 
-.tableCheckbox {
-    background-color: white; 
-}
 .center {text-align: center;}
 .right {text-align: right};

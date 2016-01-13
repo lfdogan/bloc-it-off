@@ -8,7 +8,6 @@
         // Firebase database references
         var rootRef = new Firebase("https://lfdoganblocitoff.firebaseio.com/");
         var allMessagesRef = rootRef.child('allMessages');
-
         
         
         var Messages = {
@@ -16,10 +15,6 @@
                 return $firebaseArray(allMessagesRef); 
             }
         };
-        
-        
-
-        
         /*
         console.log(Messages);// an Object, but not our Firebase database
         console.log(allMessagesRef); // returns U {k: Yh, path: L, n: ae, lc: false}
@@ -28,11 +23,7 @@
         
          
 
-         
-         
-         
-         
-//COPIED FROM ALLCTRL.JS
+
           //function calcDueDate receives a date in total number of milliseconds
          Messages.calcDueDate = function(dateEntered){
              // 1,000 ms in a second; 60s in a minute
@@ -48,7 +39,7 @@
          
          
          
-//COPIED FROM ALLCTRL.JS  
+
          // function calcOverdue() takes in a date/time (a number in the form of milliseconds)
          // calculates the difference between the dueDate and current date/time
          //can't use Firebase.ServerValue.TIMESTAMP here because it only works when writing to Firebase via .set(), .push() etc
@@ -62,39 +53,30 @@
          };
          
         
-
-         
-         
-
-//COPIED FROM ALLCTRL.JS      
-         /*
-         function: labelPriority()
-         used in html to transform priority value from a number to text
-         1: high, 2: medium, 3: low
-         takes in the value of allMessages/key/priority
-         converts the value to a number
-         returns corresponding string
-         */     
-        Messages.labelPriority = function(number){
-            //console.log("labelPriority");
-            number = Number(number); //force string to number
-            switch(number){
-                case 1:
-                    return 'high';
-                    break;
-                case 2: 
-                    return 'medium';
-                    break;
-                case 3: 
-                    return 'low';
-                    break;
-                default: 
-                    return 'other';
-            };
+        /* function checkOff()
+        * @desc user clicks on a task and function marks task as complete (completed: true)
+        * first console.log prints the information for the task that was clicked on
+        * using startAt(), endAt(), and equalTo() allows us to choose arbitrary starting and ending points for our queries
+        * in our database, query all children whose dateAdded is equal to task.dateAdded
+        * print the unique ID (key)
+        * create a new reference to that specific task
+        * update the value of completed... i.e. change it from 'false' to 'true'
+        * print new value of completed
+        */
+        Messages.checkOff = function(task){
+            console.log('CHECK OFF', task.dateAdded, task.value, task.priority, task.completed);
+            allMessagesRef.orderByChild("dateAdded").equalTo(task.dateAdded).on("child_added", function(snapshot) {
+                console.log(snapshot.key());
+                var curRef = allMessagesRef.child(  snapshot.key() );
+                curRef.update({"completed": true});
+                console.log('CHECK OFF', task.completed);
+            });
         };
                     
         
         return Messages;
+        
+
         
         
         

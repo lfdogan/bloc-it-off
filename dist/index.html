@@ -14,7 +14,16 @@
         <a ui-sref="all">All Tasks</a>
    <ui-view></ui-view> 
         
-        
+
+      <div ng-controller="MainCtrl">
+        <input type="text" id="txtNewMessage" placeholder="new task">
+        <input type="radio" id="prHigh" name="Priority" value=1>high
+        <input type="radio" id="prMed"  name="Priority" value=2 checked>medium
+        <input type="radio" id="prLow"  name="Priority" value=3>low
+        <button id="btnUpdateMessage" class="btn btn-primary">Update</button>
+        <button id="btnUndo" class="btn btn-primary">Undo <span id="lblCurrentMessage" class="center"></span></button>
+    </div>
+</div>      
 
 
 
@@ -47,6 +56,7 @@
 
 
 <!--JS Controllers -->
+<script src="/scripts/controllers/MainCtrl.js"></script>
 <script src="/scripts/controllers/AllCtrl.js"></script>
 <script src="/scripts/controllers/ActiveCtrl.js"></script>
 <script src="/scripts/controllers/CompletedCtrl.js"></script>        

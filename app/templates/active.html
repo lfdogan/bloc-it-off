@@ -18,7 +18,7 @@
                 <th style="text-align: left">task</th>
                 <th class="center">priority</th>
                 <th class="center">date due</th>          
-                <th class="tableCheckbox right">click <span class="ion-checkmark-circled"></span> to complete</th>
+                <th class="tableCheckbox center">click <span class="ion-checkmark-circled"></span> to complete</th>
             </tr>
             
             <tr ng-repeat="task in active.allMessages" 
@@ -26,26 +26,10 @@
                 <td> {{ task.value }} </td>
                 <td class="center"> {{ task.priority | priority }} </td>
                 <td class="center"> {{ active.Message.calcDueDate(task.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>              
-                <td class="tableCheckbox right" ng-show="{{ !task.completed }}">ID: {{ $id }}
-                    <a ng-click="active.checkOff(task)"><span class="ion-checkmark-circled"></span></a>
+                <td class="center" ng-show="{{ !task.completed }}">
+                    <a ng-click="active.Message.checkOff(task)"><span class="ion-checkmark-circled"></span></a>
                 </td>
             </tr>
             
         </table>
     </div>
-
-
-
-
-
-
-    <div>
-        <input type="text" id="txtNewMessage" placeholder="new task">
-        <input type="radio" id="prHigh" name="Priority" value=1>high
-        <input type="radio" id="prMed"  name="Priority" value=2 checked>medium
-        <input type="radio" id="prLow"  name="Priority" value=3>low
-        <button id="btnUpdateMessage" class="btn btn-primary">Update</button>
-        <button id="btnUndo" class="btn btn-primary">Undo <span id="lblCurrentMessage" class="center"></span></button>
-    </div>
-</div>
-
