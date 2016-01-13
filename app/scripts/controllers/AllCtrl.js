@@ -3,7 +3,7 @@
 
 //variables accessed by the html page as completed.<variable> where it is defined here as this.<variable>         
          this.title = "All Tasks";
-         this.allMessages = Message.all(); // the ARRAY of objects from the allMessages Firebase database
+         this.allMessages = Message.key(); // the ARRAY of objects from the allMessages Firebase database
          this.Message = Message; // allows html to access functions in Message service
 
          

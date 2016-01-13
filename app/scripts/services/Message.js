@@ -10,11 +10,26 @@
         var allMessagesRef = rootRef.child('allMessages');
         
         
+            //get all tasks from database
+            //'all' is ordered by default (index)
+            //in the controller Messages is renamed allMessages and html ng-repeat calls allMessages        
         var Messages = {
-            all: function() {
-                return $firebaseArray(allMessagesRef.orderByChild("priority")); 
-            }
+            key: function() {
+                return $firebaseArray(allMessagesRef); //order tasks by unique key (also dateAdded)
+            },
+            priority: function() {
+                return $firebaseArray(allMessagesRef.orderByChild("priority"));
+            },
+            completed: function() {
+                return $firebaseArray(allMessagesRef.orderByChild("completed")); //order tasks in order of completion            
+            },
+            value: function() {
+                return $firebaseArray(allMessagesRef.orderByChild("value")); //order tasks alphabetically
+            }            
         };
+        
+        
+        
         /*
         console.log(Messages);// an Object, but not our Firebase database
         console.log(allMessagesRef); // returns U {k: Yh, path: L, n: ae, lc: false}
