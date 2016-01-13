@@ -12,7 +12,7 @@
         
         var Messages = {
             all: function() {
-                return $firebaseArray(allMessagesRef); 
+                return $firebaseArray(allMessagesRef.orderByChild("priority")); 
             }
         };
         /*
@@ -31,8 +31,8 @@
              //var dueDate = dateEntered + 60000 //dueDate in 1 minute
              //var dueDate = dateEntered + 3.6e+6 //dueDate in 1 hour
              //var dueDate = dateEntered + 8.64e+7 //dueDate in 1 day
-             var dueDate = dateEntered + ((8.64e+7)*3) //dueDate in 3 days
-             //var dueDate = dateEntered + 6.048e+8 //dueDate in 1 week
+             //var dueDate = dateEntered + ((8.64e+7)*3) //dueDate in 3 days
+             var dueDate = dateEntered + 6.048e+8 //dueDate in 1 week
              return dueDate;
          };
 
@@ -62,6 +62,7 @@
         * create a new reference to that specific task
         * update the value of completed... i.e. change it from 'false' to 'true'
         * print new value of completed
+        * this does NOT update the checkmark in the ALL TASKS view!!!
         */
         Messages.checkOff = function(task){
             console.log('CHECK OFF', task.dateAdded, task.value, task.priority, task.completed);

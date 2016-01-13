@@ -11,12 +11,12 @@
          $stateProvider
          //in LandingCtrl.js refer to variables as this.landing but in landing.html as landing.title
              .state('all', {
-                 url: '/',
+                 url: '/all',
                  controller: 'AllCtrl as all',
                  templateUrl: '/templates/all.html'
              })
              .state('active', {
-                 url: '/active',
+                 url: '/',
                  controller: 'ActiveCtrl as active',
                  templateUrl: '/templates/active.html'
              })
