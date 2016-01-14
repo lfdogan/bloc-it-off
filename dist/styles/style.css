@@ -1,13 +1,26 @@
-.tasks {
+.box {
     vertical-align: middle;
-    background-color: lightgray;
+    background-color: #bdbdbd;
     position: fixed; /* or absolute */
-    width: 300px;
-    min-height: 500px;
     left: 50%; /* top left corner will be in middle of page*/
-    margin-left: -100px; /* half the width moved left */
+    width: 600px;
+    margin-left: -300px; /* half the width, minus means moved to left */
 }
 .title {
     text-align: center;
-    background-color: darkseagreen;    
+    background-color: darkseagreen; 
 }
+
+table {
+    background-color: #d3d3d3;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #a8a8a8;
+}
+
+
+.center {text-align: center;}
+.right {text-align: right};
