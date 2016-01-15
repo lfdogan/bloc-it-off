@@ -85,10 +85,15 @@
                 console.log(snapshot.key());
                 var curRef = allMessagesRef.child(  snapshot.key() );
                 curRef.update({"completed": true});
-                console.log('CHECK OFF', task.completed);
             });
         };
                     
+        
+        Message.reOrderBy = function(column){
+            console.log("clicked to reorder");
+        };
+  
+        
         
         return Messages;
         

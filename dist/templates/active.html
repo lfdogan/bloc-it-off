@@ -5,10 +5,10 @@
 <hr/>
 
 <div>
-    <div>
+    <div class="list-all">
         <!-- {{message.$value}}for children with one value -->
         <!-- {{message.value}} for children with multiple keys/values -->
-        <p class="center"><i>all tasks:</i> | <span ng-repeat="task in active.allMessages">{{ task.value }} | </span></p>
+        <p class="center"><a ui-sref="all">All Tasks: | <span ng-repeat="task in active.allMessages">{{ task.value }} | </span></a></p>
 
         
         
@@ -26,8 +26,7 @@
                 <td> {{ task.value }} </td>
                 <td class="center"> {{ task.priority | priority }} </td>
                 <td class="center"> {{ active.Message.calcDueDate(task.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>              
-                <td class="center" ng-show="{{ !task.completed }}">
-                    <a ng-click="active.Message.checkOff(task)"><span class="ion-checkmark-circled"></span></a>
+                <td class="center"><a ng-click="active.Message.checkOff(task)"><span class="ion-checkmark-circled"></span></a>
                 </td>
             </tr>
             

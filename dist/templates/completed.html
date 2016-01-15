@@ -5,10 +5,10 @@
 <hr/>
 
 <div>
-    <div>
+    <div class="list-all">
         <!-- {{message.$value}}for children with one value -->
         <!-- {{message.value}} for children with multiple keys/values -->
-        <p class="center">all: | <span ng-repeat="task in completed.allMessages">{{ task.value }} | </span></p>
+        <p class="center"><a ui-sref="all">All Tasks | <span ng-repeat="task in completed.allMessages">{{ task.value }} | </span></a></p>
 
         <table>
             <tr>

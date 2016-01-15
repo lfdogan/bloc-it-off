@@ -1,6 +1,48 @@
+/*
+https://color.adobe.com/create/color-wheel/?base=2&rule=Triad&selected=4&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.3569046122739025,0.3980392156862745,0.34160839729786285,0.673235294117647,0.6754080710488266,0.7480392156862745,0.6767844594943423,0.6980392156862745,0.6688807168299041,0.49803921568627446,0.4503209951923229,0.4274311966190008,0.9980392156862745,0.914514319318679,0.874448532415452&swatchOrder=0,1,2,3,4
+#5B6557
+#ACACBF
+#ADB2AB
+#7F736D
+#FEE9DF
+*/
+html {
+    background-color: #5B6557;
+    font-family: 'Oxygen', sans-serif;
+}
+
+
+nav {
+    align-content: center;
+    font-family: 'PT Sans', sans-serif;
+    left: auto;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.navbar-link {/* descendent selector: "navbar-link" inside "links-container" */
+     display: table-cell;
+     position: relative;
+     height: 100%;
+     padding-left: 1rem;
+     padding-right: 1rem;
+     vertical-align: middle;     /* orients inline or table-cell content vertically to the "middle" */
+     color: #FEE9DF;
+     font-size: 0.75rem;
+     letter-spacing: 0.05rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     text-decoration: none; /*  no link underline */
+     cursor: pointer;
+ }
+
+ .navbar-link:hover {   /* pseudo-class selector for mouse hover  */
+     color: #5B6557; /* text changes color to bright pink */
+ }
+
 .box {
     vertical-align: middle;
-    background-color: #bdbdbd;
+    background-color: #ADB2AB;
     position: fixed; /* or absolute */
     left: 50%; /* top left corner will be in middle of page*/
     width: 600px;
@@ -8,17 +50,28 @@
 }
 .title {
     text-align: center;
-    background-color: darkseagreen; 
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.5rem;
 }
 
 table {
-    background-color: #d3d3d3;
+    background-color: #FEE9DF;
     border-collapse: collapse;
     width: 100%;
 }
 
+.list-all a {
+    text-decoration: none; /*  no link underline */
+    color: #FEE9DF;
+}
+
+
 th {
-    background-color: #a8a8a8;
+    background-color: #FEE9DF;
+         font-size: 0.75rem;
+     letter-spacing: 0.05rem;
+     text-transform: uppercase;
+    background-color: #ADB2AB;
 }
 
 

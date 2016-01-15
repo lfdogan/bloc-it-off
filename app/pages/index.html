@@ -5,13 +5,22 @@
     <title>Bloc It Off</title>
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen|PT+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
+
+        
+        
     <div class="box">
-        <a ui-sref="active">Active Tasks</a>
-        <a ui-sref="completed">Completed Tasks</a>
-        <a ui-sref="all">All Tasks</a>
+        <nav>
+            <a class="navbar-link" ui-sref="active">Active Tasks</a>
+            <a class="navbar-link" ui-sref="completed">Completed Tasks</a>
+            <a class="navbar-link" ui-sref="all">All Tasks</a>
+        </nav>
+        
+        
+        
    <ui-view></ui-view> 
         
 
