@@ -5,31 +5,39 @@
     <title>Bloc It Off</title>
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Arimo|Montserrat' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
+    
     <div class="box">
         <a ui-sref="active">Active Tasks</a>
         <a ui-sref="completed">Completed Tasks</a>
         <a ui-sref="all">All Tasks</a>
-   <ui-view></ui-view> 
+   
+        
+        
+        <ui-view></ui-view> 
         
 
-      <div ng-controller="MainCtrl">
-        <input type="text" id="txtNewMessage" placeholder="new task">
-        <input type="radio" id="prHigh" name="Priority" value=1>high
-        <input type="radio" id="prMed"  name="Priority" value=2 checked>medium
-        <input type="radio" id="prLow"  name="Priority" value=3>low
-        <button id="btnUpdateMessage" class="btn btn-primary">Update</button>
-        <button id="btnUndo" class="btn btn-primary">Undo <span id="lblCurrentMessage" class="center"></span></button>
-    </div>
-</div>      
-
-
-
-
-
+      
+        <div ng-controller="MainCtrl" class="new-task-form">
+            <div class="new-task text">
+                <input type="text" id="txtNewMessage" placeholder="new task">
+            </div>
+            <div class="new-task priority">
+                <input type="radio" id="prHigh" name="Priority" value=1>high
+                <input type="radio" id="prMed"  name="Priority" value=2 checked>medium
+                <input type="radio" id="prLow"  name="Priority" value=3>low
+            </div>
+            <div class="new-task buttons">
+                <button id="btnUpdateMessage" class="btn btn-primary">Update</button>
+                <button id="btnUndo" class="btn btn-primary">Undo <span id="lblCurrentMessage" class="center"></span></button>
+            </div>
+        </div>
         
+        
+
     </div>
 
     
@@ -54,16 +62,14 @@
 <!--JS Services -->
 <script src="/scripts/services/Message.js"></script>
 
-
 <!--JS Controllers -->
 <script src="/scripts/controllers/MainCtrl.js"></script>
 <script src="/scripts/controllers/AllCtrl.js"></script>
 <script src="/scripts/controllers/ActiveCtrl.js"></script>
 <script src="/scripts/controllers/CompletedCtrl.js"></script>        
 
-
 <!--JS Directive Templates-->
-<!--<script src="/scripts/directives/seekBar.js"></script>-->
+<!--<script src="/scripts/directives/xxxxx.js"></script>-->
     
 <!--JS Filters-->
 <script src="/scripts/filters/priority.js"></script>
