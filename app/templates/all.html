@@ -18,7 +18,8 @@
             <th class="center"><u>date due</u></th>
             <th class="center">completed?</th>
 <!--            <th class="center">overdue?</th>                 -->
-            <th class="center">click <span class="ion-checkmark-circled"></span> to complete</th>
+<!--            <th class="tableCheckbox center">click <span class="ion-checkmark-circled"></span> to complete</th>-->
+            <th class="tableCheckbox center">click <i class="fa fa-check-square-o"></i> to complete</th>
         </tr>
 
 
@@ -41,7 +42,8 @@
 
             <!--checkmark if not completed, blank if completed-->
             <td class="center pointer" ng-show="{{ !task.completed }}">
-                <a ng-click="all.Message.checkOff(task)"><span class="ion-checkmark-circled"></span></a>
+<!--                <a ng-click="all.Message.checkOff(task)"><span class="ion-checkmark-circled"></span></a>-->
+                <a ng-click="all.Message.checkOff(task)"><i class="fa fa-check-square-o"></i></a>
             </td>
             <td class="center" ng-show="{{ task.completed }}"></td>
         </tr>

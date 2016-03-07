@@ -19,7 +19,8 @@
             <th>task</th>
             <th class="center"><u>priority</u></th>
             <th class="center">due</th>          
-            <th class="tableCheckbox center">click <span class="ion-checkmark-circled"></span> to complete</th>
+<!--            <th class="tableCheckbox center">click <span class="ion-checkmark-circled"></span> to complete</th>-->
+            <th class="tableCheckbox center">click <i class="fa fa-check-square-o"></i> to complete</th>
         </tr>
 
         <tr ng-repeat="task in active.allMessages" 
@@ -28,7 +29,8 @@
             <td class="center"> {{ task.priority | priority }} </td>
             <td class="center"> {{ active.Message.calcDueDate(task.dateAdded) | date: 'EEE' }} </td>              
             <td class="center pointer" ng-show="{{ !task.completed }}">
-                <a ng-click="active.Message.checkOff(task)" ><span class="ion-checkmark-circled"></span></a>
+<!--                <a ng-click="active.Message.checkOff(task)" ><span class="ion-checkmark-circled"></span></a>-->
+                <a ng-click="active.Message.checkOff(task)" ><i class="fa fa-check-square-o"></i></a>
             </td>
         </tr>
     </table>
